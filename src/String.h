@@ -3,16 +3,16 @@ StringLibrary - A C++ library extending the functionality of the STL strings
 Copyright (C) 2019-2020 Waldemar Zimpel <hspp@utilizer.de>
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
+it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU Lesser General Public License for more details.
+GNU General Public License for more details.
 
-You should have received a copy of the GNU Lesser General Public License
+You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
@@ -75,8 +75,11 @@ public:
     repeat              (const string &str, const uint64_t num),
     replace             (const string &content, const string &search, const string &replace_with,
                          const bool case_sensitive = true),
+    replace             (const string &content, const string::const_iterator &begin,
+                         const string::const_iterator &end, const string &new_value),
     toLower             (string content),
     toUpper             (string content),
+
     toLowerUtf8         (const string &content),
     toUpperUtf8         (const string &content);
 
@@ -92,6 +95,10 @@ public:
 
     static string
     numberFormat        (double number, const streamsize precition);
+
+    static size_t
+    lastIndexOf(const string &content, const char c) noexcept,
+    lastIndexOf(const string &content, const initializer_list<const char> &candidates) noexcept;
 };
 
 /*static*/ inline bool
